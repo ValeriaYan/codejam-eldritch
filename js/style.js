@@ -12,7 +12,7 @@ ancients.addEventListener('click', function(event){
                 item.classList.remove('_active');
             }
         }
-        event.target.parentElement.classList.toggle('_active');
+        event.target.parentElement.classList.add('_active');
     }
 })
 
@@ -23,7 +23,7 @@ levels.addEventListener('click', function(event){
                 item.classList.remove('_active');
             }
         }
-        event.target.classList.toggle('_active');
+        event.target.classList.add('_active');
     }
 })
 
