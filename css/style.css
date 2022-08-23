@@ -151,6 +151,8 @@ body {
 .cards__open-card {
     box-shadow: 0px 5px 27px 19px rgba(0, 0, 0, 0.5) inset;
     border-radius: 5px;
+    outline: none;
+    border: none;
 }
 
 .stages__wrap {

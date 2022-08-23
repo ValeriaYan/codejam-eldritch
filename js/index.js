@@ -134,9 +134,11 @@ function deleteCardFromCustomDeck(colorCard, number){
     customDeck[colorCard].quantity--;
 }
 
-let stage1 = {};
-let stage2 = {};
-let stage3 = {};
+let stages = {
+    stage1: {},
+    stage2: {},
+    stage3: {},
+}
 
 function selectCardsForStage(stage){
     for(let i = 0; i < stage.numberGreen; i++){
@@ -159,49 +161,84 @@ function selectCardsForStage(stage){
 
 
 function fillStagesDecks(){
-    stage1 = {
+    stages.stage1 = {
         numberGreen: activeAncient.firstStage.greenCards,
         numberBrown: activeAncient.firstStage.brownCards,
         numberBlue: activeAncient.firstStage.blueCards,
         cards: [],
     }
     
-    stage2 = {
+    stages.stage2 = {
         numberGreen: activeAncient.secondStage.greenCards,
         numberBrown: activeAncient.secondStage.brownCards,
         numberBlue: activeAncient.secondStage.blueCards,
         cards: [],
     }
 
-    stage3 = {
+    stages.stage3 = {
         numberGreen: activeAncient.thirdStage.greenCards,
         numberBrown: activeAncient.thirdStage.brownCards,
         numberBlue: activeAncient.thirdStage.blueCards,
         cards: [],
     }
 
-    selectCardsForStage(stage1);
-    selectCardsForStage(stage2);
-    selectCardsForStage(stage3);
+    selectCardsForStage(stages.stage1);
+    selectCardsForStage(stages.stage2);
+    selectCardsForStage(stages.stage3);
 }
 
 let finalDeck = [];
 
 function fillFinalDeck(){
-    for(let card of stage3.cards){
+    for(let card of stages.stage3.cards){
         finalDeck.push(card);
     }
-    for(let card of stage2.cards){
+    for(let card of stages.stage2.cards){
         finalDeck.push(card);
     }
-    for(let card of stage1.cards){
+    for(let card of stages.stage1.cards){
         finalDeck.push(card);
     }
 }
 
+const htmlStages = document.querySelectorAll('.stage');
+
+function outputNumberOfCardsInHtml(){
+    for(let i = 0; i < htmlStages.length; i++){
+        htmlStages[i].querySelector('.counter_green').textContent = stages[`stage${i + 1}`].numberGreen;
+        htmlStages[i].querySelector('.counter_brown').textContent = stages[`stage${i + 1}`].numberBrown;
+        htmlStages[i].querySelector('.counter_blue').textContent = stages[`stage${i + 1}`].numberBlue;
+    }
+}
 
 button.addEventListener('click', function(){
     selectCardsDependingOnLevel();
     fillStagesDecks();
+    outputNumberOfCardsInHtml();
     fillFinalDeck();
+    console.log(finalDeck)
+})
+
+const openCard = document.querySelector('.cards__open-card');
+const htmlCardDeck = document.querySelector('.cards__deck');
+
+function showOpenCard(){
+    if(openCard.firstChild){
+        openCard.removeChild(openCard.firstChild);
+    }
+    let newCardImg = document.createElement('img');
+    newCardImg.classList.add('cards__open-card-img');
+
+    if(finalDeck.length !== 0){
+        newCardImg.src = finalDeck.pop().cardFace;
+        openCard.append(newCardImg);
+    }else if(openCard.firstChild){
+        openCard.removeChild(openCard.firstChild);
+    }
+
+}
+
+htmlCardDeck.addEventListener('click', function(event){
+    showOpenCard();
+    console.log(finalDeck)
 })
