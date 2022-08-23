@@ -1,0 +1,220 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-width: 480px;
+    height: 100vh;
+    font-family: "Cormorant Infant", serif;
+    font-size: 16px;
+    background-image: url("../assets/home.png");
+    background-size: cover;
+}
+
+.header {
+    display: flex;
+    padding: 40px 20px;
+}
+
+.ancients {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 75%;
+    margin-right: 30px;
+}
+
+.ancients__item {
+    width: 23%;
+    margin: 0 10px;
+}
+
+.ancients__img {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 10px 10px 8px 0px rgba(0, 0, 0, 0.5);
+
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
+
+.ancients__img:hover,
+.ancients__item._active .ancients__img {
+    transform: scale(1.1);
+    box-shadow: 20px 20px 8px 0px rgba(0, 0, 0, 0.5);
+}
+
+.levels {
+    flex: 1 1 25%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 400px;
+    justify-content: center;
+}
+
+.levels__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 150px;
+    height: 100px;
+    margin: 0 10px 20px;
+
+    background-image: url("../assets/parchment.png");
+    background-size: cover;
+
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    color:rgb(36, 36, 36);
+    
+    transition: all ease 0.5s;
+    cursor: pointer;
+
+    box-shadow: 0px 15px 8px -5px rgba(0, 0, 0, 0.4);
+}
+
+.levels__item:hover,
+.levels__item._active {
+    background-image: url("../assets/parchmentFilter.png");
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px 10px;
+}
+
+.button {
+    padding: 2px 10px;
+
+    font-family: "Cormorant Infant", serif;;
+    font-size: 32px;
+    font-weight: 700;
+
+    border-radius: 5px;
+    border: none;
+    outline: none;
+
+    background-color: rgb(255, 219, 173);
+    box-shadow: 0px 0px 10px 6px rgba(0, 0, 0, 0.6) inset, 5px 5px 8px 0px rgba(0, 0, 0, 0.5) ;
+    
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(255, 203, 134);
+}
+
+.button:active{
+    transform: translate(5px, 5px);
+    box-shadow: 0px 0px 10px 6px rgba(0, 0, 0, 0.6) inset, 0px 0px 0px 0px rgba(0, 0, 0, 0) ;
+}
+
+.cards__wrap {
+    display: none;
+    padding: 0 50px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cards__deck,
+.cards__open-card {
+    width: 200px;
+    height: 300px;
+}
+
+.cards__deck {
+    margin-right: 100px;
+}
+
+.cards__deck-img,
+.cards__open-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 10px 10px 8px 0px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.cards__open-card {
+    box-shadow: 0px 5px 27px 19px rgba(0, 0, 0, 0.5) inset;
+    border-radius: 5px;
+}
+
+.stages__wrap {
+    padding: 0 50px;
+}
+
+.stages {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    min-width: 420px;
+    min-height: 300px;
+    padding: 20px 40px;
+    
+    background-image: url("../assets/parchment.png");
+    background-size: cover;
+}
+
+
+.stages__stage {
+    width: 100%;
+}
+
+.stage {
+    display: flex;
+}
+
+.stage__title {
+    color:rgb(36, 36, 36);
+    font-size: 32px;
+    flex: 1 1 40%;
+    margin-right: 20px;
+    text-align: right;
+}
+
+.stage__counters {
+    display: flex;
+    flex: 1 1 60%;
+}
+
+.stage__counter {
+    width: 53px;
+    height: 33px;
+    margin-right: 20px;
+
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    border: 3px solid rgb(236, 236, 236);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.counter_green {
+    background-color: rgb(0, 78, 0);
+}
+
+.counter_brown {
+    background-color: rgb(146, 118, 26);
+}
+
+.counter_blue {
+    background-color: rgb(79, 79, 177);
+}

@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Cormorant+Infant:regular,italic,700,700italic" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
     <title>Eldritch</title>
 </head>
 <body>
@@ -32,32 +36,46 @@
         </div>
     </header>
     <main class="main">
-        <div class="cards">
-            <div class="cards__deck">
-                <img class="cards__deck-img" src="assets/mythicCardBackground.png" alt="mythic card background">
+        <div class="stages__wrap">
+            <div class="stages">
+                <div class="stages__stage stage" data-stage="1">
+                    <h3 class="stage__title">Этап I:</h3>
+                    <div class="stage__counters">
+                        <div class="stage__counter counter_green">0</div>
+                        <div class="stage__counter counter_brown">0</div>
+                        <div class="stage__counter counter_blue">0</div>
+                    </div>
+                </div>
+                <div class="stages__stage stage" data-stage="2">
+                    <h3 class="stage__title">Этап II:</h3>
+                    <div class="stage__counters">
+                        <div class="stage__counter counter_green">0</div>
+                        <div class="stage__counter counter_brown">0</div>
+                        <div class="stage__counter counter_blue">0</div>
+                    </div>
+                </div>
+                <div class="stages__stage stage" data-stage="3">
+                    <h3 class="stage__title">Этап III:</h3>
+                    <div class="stage__counters">
+                        <div class="stage__counter counter_green">0</div>
+                        <div class="stage__counter counter_brown">0</div>
+                        <div class="stage__counter counter_blue">0</div>
+                    </div>
+                </div>
             </div>
-            <div class="cards__open-card"></div>
         </div>
-        <div class="stages">
-            <div class="stages__stage stage" data-stage="1">
-                <h3 class="stage__title">Первый этап</h3>
-                <div class="stage__count stage_green"></div>
-                <div class="stage__count stage_brown"></div>
-                <div class="stage__count stage_blue"></div>
-            </div>
-            <div class="stages__stage stage" data-stage="2">
-                <h3 class="stage__title">Второй этап</h3>
-                <div class="stage__count stage_green"></div>
-                <div class="stage__count stage_brown"></div>
-                <div class="stage__count stage_blue"></div>
-            </div>
-            <div class="stages__stage stage" data-stage="3">
-                <h3 class="stage__title">Третий этап</h3>
-                <div class="stage__count stage_green"></div>
-                <div class="stage__count stage_brown"></div>
-                <div class="stage__count stage_blue"></div>
+        <button class="button">Замешать колоду</button>
+        <div class="cards__wrap">
+            <div class="cards">
+                <div class="cards__deck">
+                    <img class="cards__deck-img" src="assets/mythicCardBackground.png" alt="mythic card background">
+                </div>
+                <div class="cards__open-card"></div>
             </div>
         </div>
     </main>
+
+    <script src="js/style.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>
