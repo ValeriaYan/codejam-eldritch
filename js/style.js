@@ -1,9 +1,11 @@
 const ancients = document.querySelector('.ancients');
 const ancientsItem = document.querySelectorAll('.ancients__item');
+const ancientsLoupe = document.querySelectorAll('.ancients__loupe');
 const levels = document.querySelector('.levels');
 const levelsItems = document.querySelectorAll('.levels__item');
 const btn = document.querySelector('.button');
 const cards = document.querySelector('.cards__wrap');
+
 
 ancients.addEventListener('click', function(event){
     if(event.target.classList.contains('ancients__img')){
@@ -13,6 +15,35 @@ ancients.addEventListener('click', function(event){
             }
         }
         event.target.parentElement.classList.add('_active');
+    }
+})
+
+let isScale = false;
+ancients.addEventListener('click', function(event){
+    if(event.target.classList.contains('ancients__loupe')){
+        if(isScale){
+            event.target.parentElement.style = '';
+            isScale = false;
+        }else{
+            for(let item of ancientsLoupe){
+                if(item !== event.target){
+                    item.parentElement.style = '';
+                }
+            }
+            event.target.parentElement.style.transform = 'scale(1.8)';
+            event.target.parentElement.style.transformOrigin = 'top left';
+            event.target.parentElement.style.zIndex = '35';
+            isScale = true;
+        }
+    }
+})
+
+document.addEventListener('click', function(event){
+    if(!event.target.classList.contains('ancients__loupe')){
+        for(let item of ancientsItem){
+            item.style = '';
+            isScale = false;
+        }
     }
 })
 

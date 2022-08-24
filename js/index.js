@@ -19,7 +19,7 @@ let customDeck = {
     }
 };
 
-let activeLevel = '';
+let activeLevel = 'normal';
 
 const ancients = document.querySelector('.ancients');
 const levels = document.querySelector('.levels');
@@ -43,7 +43,6 @@ ancients.addEventListener('click', function(){
 });
 
 levels.addEventListener('click', setActiveLevel);
-levels.addEventListener('click', () => button.style.display = 'block');
 
 function setQuantityCardsForCustomDeck(){
     customDeck.green.quantity = activeAncient.firstStage.greenCards + activeAncient.secondStage.greenCards + activeAncient.thirdStage.greenCards;
@@ -245,7 +244,10 @@ function showOpenCard(){
     if(finalDeck.length !== 0){
         let top = getTopCardInFinalDeck();
         openCardImg.src = top.cardFace;
-        openCardImg.style.display = 'block'
+
+        openCardImg.onload = function(){
+            openCardImg.style.display = 'block'
+        }
     }
 
 }
