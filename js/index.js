@@ -40,10 +40,10 @@ function setActiveLevel(){
 
 ancients.addEventListener('click', function(){
     setActiveAncient();
-    setQuantityCardsForCustomDeck();
 });
 
 levels.addEventListener('click', setActiveLevel);
+levels.addEventListener('click', () => button.style.display = 'block');
 
 function setQuantityCardsForCustomDeck(){
     customDeck.green.quantity = activeAncient.firstStage.greenCards + activeAncient.secondStage.greenCards + activeAncient.thirdStage.greenCards;
@@ -52,6 +52,7 @@ function setQuantityCardsForCustomDeck(){
 }
 
 function selectCards(cardsData, colorCards, arrayOptions, additionalOption = ''){
+    setQuantityCardsForCustomDeck();
     let cardsForSelection = []; 
     for(let i = 0; i < arrayOptions.length; i++){
         let temp =  cardsData.filter(elem => elem.difficulty == arrayOptions[i]);
@@ -79,6 +80,7 @@ function selectCards(cardsData, colorCards, arrayOptions, additionalOption = '')
     }
 
     shuffleArray(customDeck[colorCards].cards);
+    console.log(customDeck)
 }
 
 function selectCardsVeryEasy(){
@@ -141,17 +143,17 @@ let stages = {
 }
 
 function selectCardsForStage(stage){
-    for(let i = 0; i < stage.numberGreen; i++){
+    for(let i = 0; i < stage.greenNumber; i++){
         let randomNum = getRandomNum(customDeck.green.quantity);
         stage.cards.push(customDeck.green.cards[randomNum]);
         deleteCardFromCustomDeck('green', randomNum);
     }
-    for(let i = 0; i < stage.numberBrown; i++){
+    for(let i = 0; i < stage.brownNumber; i++){
         let randomNum = getRandomNum(customDeck.brown.quantity);
         stage.cards.push(customDeck.brown.cards[randomNum]);
         deleteCardFromCustomDeck('brown', randomNum);
     }
-    for(let i = 0; i < stage.numberBlue; i++){
+    for(let i = 0; i < stage.blueNumber; i++){
         let randomNum = getRandomNum(customDeck.blue.quantity);
         stage.cards.push(customDeck.blue.cards[randomNum]);
         deleteCardFromCustomDeck('blue', randomNum);
@@ -162,29 +164,30 @@ function selectCardsForStage(stage){
 
 function fillStagesDecks(){
     stages.stage1 = {
-        numberGreen: activeAncient.firstStage.greenCards,
-        numberBrown: activeAncient.firstStage.brownCards,
-        numberBlue: activeAncient.firstStage.blueCards,
+        greenNumber: activeAncient.firstStage.greenCards,
+        brownNumber: activeAncient.firstStage.brownCards,
+        blueNumber: activeAncient.firstStage.blueCards,
         cards: [],
     }
     
     stages.stage2 = {
-        numberGreen: activeAncient.secondStage.greenCards,
-        numberBrown: activeAncient.secondStage.brownCards,
-        numberBlue: activeAncient.secondStage.blueCards,
+        greenNumber: activeAncient.secondStage.greenCards,
+        brownNumber: activeAncient.secondStage.brownCards,
+        blueNumber: activeAncient.secondStage.blueCards,
         cards: [],
     }
 
     stages.stage3 = {
-        numberGreen: activeAncient.thirdStage.greenCards,
-        numberBrown: activeAncient.thirdStage.brownCards,
-        numberBlue: activeAncient.thirdStage.blueCards,
+        greenNumber: activeAncient.thirdStage.greenCards,
+        brownNumber: activeAncient.thirdStage.brownCards,
+        blueNumber: activeAncient.thirdStage.blueCards,
         cards: [],
     }
 
     selectCardsForStage(stages.stage1);
     selectCardsForStage(stages.stage2);
     selectCardsForStage(stages.stage3);
+    console.log(stages)
 }
 
 let finalDeck = [];
@@ -199,46 +202,63 @@ function fillFinalDeck(){
     for(let card of stages.stage1.cards){
         finalDeck.push(card);
     }
+    console.log(finalDeck)
 }
 
 const htmlStages = document.querySelectorAll('.stage');
 
 function outputNumberOfCardsInHtml(){
     for(let i = 0; i < htmlStages.length; i++){
-        htmlStages[i].querySelector('.counter_green').textContent = stages[`stage${i + 1}`].numberGreen;
-        htmlStages[i].querySelector('.counter_brown').textContent = stages[`stage${i + 1}`].numberBrown;
-        htmlStages[i].querySelector('.counter_blue').textContent = stages[`stage${i + 1}`].numberBlue;
+        htmlStages[i].querySelector('.counter_green').textContent = stages[`stage${i + 1}`].greenNumber;
+        htmlStages[i].querySelector('.counter_brown').textContent = stages[`stage${i + 1}`].brownNumber;
+        htmlStages[i].querySelector('.counter_blue').textContent = stages[`stage${i + 1}`].blueNumber;
     }
 }
 
-button.addEventListener('click', function(){
-    selectCardsDependingOnLevel();
-    fillStagesDecks();
-    outputNumberOfCardsInHtml();
-    fillFinalDeck();
-    console.log(finalDeck)
-})
+button.addEventListener('click', selectCardsDependingOnLevel)
+button.addEventListener('click', fillStagesDecks)
+button.addEventListener('click', outputNumberOfCardsInHtml)
+button.addEventListener('click', fillFinalDeck)
 
-const openCard = document.querySelector('.cards__open-card');
-const htmlCardDeck = document.querySelector('.cards__deck');
+const openCardImg = document.querySelector('.cards__open-card-img');
+const cardDeckImg = document.querySelector('.cards__deck-img');
+
+function getTopCardInFinalDeck(){
+    let top = finalDeck.pop();
+    delCardInStages(top);
+
+    return top;
+}
+
+function delCardInStages(elem){
+    for(let stage in stages){
+        for(let card of stages[stage].cards){
+            if(card.id == elem.id){
+                stages[stage].cards.pop();
+                stages[stage][`${elem.color}Number`]--;
+            }
+        }
+    }
+}
 
 function showOpenCard(){
-    if(openCard.firstChild){
-        openCard.removeChild(openCard.firstChild);
-    }
-    let newCardImg = document.createElement('img');
-    newCardImg.classList.add('cards__open-card-img');
-
     if(finalDeck.length !== 0){
-        newCardImg.src = finalDeck.pop().cardFace;
-        openCard.append(newCardImg);
-    }else if(openCard.firstChild){
-        openCard.removeChild(openCard.firstChild);
+        let top = getTopCardInFinalDeck();
+        openCardImg.src = top.cardFace;
+        openCardImg.style.display = 'block'
     }
 
 }
 
-htmlCardDeck.addEventListener('click', function(event){
+function showEndCards(){
+    cardDeckImg.style.display = 'none';
+    button.style.display = 'block';
+}
+
+cardDeckImg.addEventListener('click', function(){
     showOpenCard();
-    console.log(finalDeck)
+    outputNumberOfCardsInHtml();
+    if(finalDeck.length == 0){
+        showEndCards();
+    }
 })

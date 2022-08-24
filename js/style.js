@@ -27,7 +27,19 @@ levels.addEventListener('click', function(event){
     }
 })
 
+const cardsDeck = document.querySelector('.cards__deck');
+const cardsDeckImg = document.querySelector('.cards__deck-img');
+const openCard = document.querySelector('.cards__open-card');
+const openCardImg = document.querySelector('.cards__open-card-img');
+
+function removeCardOpenImg(){
+    openCardImg.style.display = 'none';
+}
+
+
 btn.addEventListener('click', function(event){
+    cardsDeckImg.style.display = 'block';
+    openCardImg.style.display = 'none';
     cards.style.display = 'block';
     btn.style.display = 'none';
 })
