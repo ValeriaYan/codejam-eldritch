@@ -9,7 +9,6 @@ body {
     flex-direction: column;
     width: 100vw;
     min-width: 500px;
-    /* max-height: 100vh; */
     font-family: "Cormorant Infant", serif;
     font-size: 16px;
     background: url("../assets/home.webp") top center;
@@ -32,6 +31,7 @@ body {
     position: relative;
     width: 300px;
     margin: 0 0 10px;
+    transform-origin: top left;
     transition: all ease 0.3s;
     cursor: pointer;
     z-index: 30;
@@ -67,6 +67,7 @@ body {
 
 .ancients__item:hover {
     transform: scale(1.1);
+    z-index: 40;
 }
 
 .ancients__item._active > .ancients__img{
@@ -152,7 +153,6 @@ body {
 
 .cards__wrap {
     display: none;
-    /* padding: 0 3%; */
 }
 
 .cards {
@@ -201,9 +201,6 @@ body {
     border: none;
 }
 
-.stages__wrap {
-    /* padding: 0 3%; */
-}
 
 .stages {
     display: flex;
@@ -333,6 +330,26 @@ body {
     .ancients {
         margin-bottom: 20px;
     }
+
+    .ancients__item[data-ancient="cthulhu"],
+    .ancients__item[data-ancient="shubNiggurath"]{
+        transform-origin: top right;
+    }
+}
+
+@media(max-width: 669px) {
+    .ancients__item {
+        transform-origin: top center;
+    }
+
+    .ancients__item[data-ancient="cthulhu"],
+    .ancients__item[data-ancient="shubNiggurath"]{
+        transform-origin: top center;
+    }
+
+    .ancients {
+        margin: 00 30px;
+    }
 }
 
 @media(max-width: 540px) {
@@ -343,5 +360,13 @@ body {
     .cards__deck {
         margin: 20px 0;
         order: 1;
+    }
+    
+    .cards__open-card {
+        order: 2;
+    }
+
+    .cards__open-card-img:hover {
+        transform-origin: bottom center;
     }
 }

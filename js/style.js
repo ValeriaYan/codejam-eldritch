@@ -30,9 +30,8 @@ ancients.addEventListener('click', function(event){
                     item.parentElement.style = '';
                 }
             }
-            event.target.parentElement.style.transform = 'scale(1.8)';
-            event.target.parentElement.style.transformOrigin = 'top left';
-            event.target.parentElement.style.zIndex = '35';
+            event.target.parentElement.style.transform = 'scale(1.6)';
+            event.target.parentElement.style.zIndex = '40';
             isScale = true;
         }
     }
