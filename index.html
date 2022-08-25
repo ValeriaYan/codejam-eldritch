@@ -14,7 +14,7 @@
 <body>
     <header class="header">
         <div class="ancients">
-            <div class="ancients__item" data-ancient="azathoth">
+            <div class="ancients__item _active" data-ancient="azathoth">
                 <img class="ancients__img" src="assets/Ancients/Azathoth.webp" alt="card Azathoth">
                 <img class="ancients__loupe" src="assets/loupe.png" alt="">
             </div>
@@ -34,7 +34,7 @@
         <div class="levels">
             <div class="levels__item" data-level="very easy">Очень легкий</div>
             <div class="levels__item" data-level="easy">Легкий уровень</div>
-            <div class="levels__item" data-level="normal">Средний уровень</div>
+            <div class="levels__item _active" data-level="normal">Средний уровень</div>
             <div class="levels__item" data-level="hard">Сложный уровень</div>
             <div class="levels__item" data-level="very hard">Очень сложный</div>
         </div>
@@ -78,7 +78,9 @@
                 </div>
             </div>
         </div>
-        <button class="button">Замешать колоду</button>
+        <div class="button__wrap">
+            <button class="button">Замешать колоду</button>
+        </div>
     </main>
 
     <script src="js/style.js" type="module"></script>
