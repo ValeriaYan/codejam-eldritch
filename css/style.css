@@ -120,7 +120,7 @@ body {
 
 .main {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     padding: 40px 20px;
 }
@@ -153,6 +153,7 @@ body {
 
 .cards__wrap {
     display: none;
+    margin: 0 100px 0 0;
 }
 
 .cards {
@@ -199,6 +200,10 @@ body {
     border-radius: 5px;
     outline: none;
     border: none;
+}
+
+.stages__wrap {
+    margin: 0 50px 0 0;
 }
 
 
@@ -262,6 +267,16 @@ body {
 
 .counter_blue {
     background-color: rgb(79, 79, 177);
+}
+
+@media(max-width: 1400px) {
+    .main {
+        justify-content: space-around;
+    }
+    .cards__wrap,
+    .stages__wrap {
+        margin: 0;
+    }
 }
 
 @media(max-width: 1200px){
