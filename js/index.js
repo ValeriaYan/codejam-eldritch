@@ -79,7 +79,6 @@ function selectCards(cardsData, colorCards, arrayOptions, additionalOption = '')
     }
 
     shuffleArray(customDeck[colorCards].cards);
-    console.log(customDeck)
 }
 
 function selectCardsVeryEasy(){
@@ -186,7 +185,6 @@ function fillStagesDecks(){
     selectCardsForStage(stages.stage1);
     selectCardsForStage(stages.stage2);
     selectCardsForStage(stages.stage3);
-    console.log(stages)
 }
 
 let finalDeck = [];

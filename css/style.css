@@ -7,32 +7,31 @@
 body {
     display: flex;
     flex-direction: column;
-    min-width: 1400px;
-    max-height: 100vh;
+    width: 100vw;
+    min-width: 500px;
+    /* max-height: 100vh; */
     font-family: "Cormorant Infant", serif;
     font-size: 16px;
-    background-image: url("../assets/home.webp");
-    background-size: cover;
+    background: url("../assets/home.webp") top center;
 }
 
 .header {
     display: flex;
     padding: 40px 20px;
-    max-height: 50vh;
 }
 
 .ancients {
-    flex: 1 1 75%;
+    flex: 1 1 70%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-right: 30px;
 }
 
 .ancients__item {
     position: relative;
-    flex: 0 1 23%;
-    margin: 0 10px;
+    width: 300px;
+    margin: 0 0 10px;
     transition: all ease 0.3s;
     cursor: pointer;
     z-index: 30;
@@ -81,12 +80,13 @@ body {
 }
 
 .levels {
-    flex: 1 1 25%;
+    flex: 1 1 30%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     max-height: 400px;
     justify-content: center;
+    align-items: center;
 }
 
 .levels__item {
@@ -119,9 +119,9 @@ body {
 
 .main {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    padding: 40px 20px 10px;
+    padding: 40px 20px;
 }
 
 .button {
@@ -152,7 +152,7 @@ body {
 
 .cards__wrap {
     display: none;
-    padding: 0 50px;
+    /* padding: 0 3%; */
 }
 
 .cards {
@@ -202,7 +202,7 @@ body {
 }
 
 .stages__wrap {
-    padding: 0 50px;
+    /* padding: 0 3%; */
 }
 
 .stages {
@@ -265,4 +265,83 @@ body {
 
 .counter_blue {
     background-color: rgb(79, 79, 177);
+}
+
+@media(max-width: 1200px){
+    .levels {
+        max-height: none;
+    }
+}
+
+@media(max-width: 1300px){
+    .main {
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .stages__wrap,
+    .button,
+    .cards__wrap {
+        margin: 15px 0;
+    }
+
+    .stages__wrap {
+        flex: 0 0 50%;
+        order: 2;
+    }
+
+    .stages {
+        margin: 0 auto;
+    }
+
+    .button__wrap {
+        flex: 1 1 100%;
+        order: 1;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .button {
+        margin: 0 auto;
+    }
+
+    .cards__wrap {
+        flex: 0 0 50%;
+        order: 3;
+    }
+}
+
+@media(max-width: 1039px) {
+    .stages__wrap {
+        order: 3;
+    }
+
+    .cards__wrap {
+        order: 2;
+    }
+}
+
+@media(max-width: 928px) {
+    .header {
+        flex-direction: column;
+    }
+
+    .levels {
+        flex-direction: row;
+    }
+
+    .ancients {
+        margin-bottom: 20px;
+    }
+}
+
+@media(max-width: 540px) {
+    .cards {
+        flex-direction: column;
+    }
+
+    .cards__deck {
+        margin: 20px 0;
+        order: 1;
+    }
 }
