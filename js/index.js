@@ -243,9 +243,8 @@ function showOpenCard(){
         let top = getTopCardInFinalDeck();
         openCardImg.src = top.cardFace;
 
-        openCardImg.onload = function(){
-            openCardImg.style.display = 'block'
-        }
+        openCardImg.style.display = 'block';
+        console.log(top.id, top.difficulty);
     }
 
 }
